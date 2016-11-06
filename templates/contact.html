@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+{% block title %}
+<title>{{ title }}</title>
+{% endblock %}
+
+{% block content %}
+<form id="contact" action="">
+  <input name="name" type="text" value="اسم شما"/>
+  <input name="email" type="email" value="ایمیل شما"/>
+  <textarea name='comment'></textarea>
+  <input name="submit" type="submit" value="ارسال "/>
+</form>
+{% endblock %}
