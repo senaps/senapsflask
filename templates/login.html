@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+{% block title %}
+<title>{{ title }}</title>
+{% endblock %}
+{% block content %}
+<form class="login" action="{{ url_for('login_success') }}"
+      method="POST">
+  <input name="name" type="text" value="Enter your name"/>
+  <input name="submit" type="submit" value="SEND"/>
+</form>
+{% endblock %}

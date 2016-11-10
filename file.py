@@ -1,7 +1,7 @@
-from flask import Flask, render_template, url_for, request
+from flask import Flask, render_template, url_for, request, session, redirect
 
 app = Flask(__name__)
-
+app.config['SECRET_KEY']= 'youd never guessed it! :)'
 
 @app.route('/index/')
 @app.route('/')
@@ -24,6 +24,24 @@ def contact():
 def about():
     title = 'about us!'
     return render_template('about.html', title= title)
+
+@app.route('/login')
+def log_in():
+    title = 'login page!'
+    return render_template('login.html', title= title)
+
+@app.route('/loginsuccess', methods=('GET','POST'))
+def login_success():
+    if request.method == 'POST':
+        session['name'] = request.form['name']
+        session['log_in'] = True
+        return redirect(url_for('index'))
+
+@app.route('/logout')
+def log_out():
+    session['name']= None
+    session['log_in']= False
+    return redirect(url_for('index'))
 
 
 if __name__ == '__main__':

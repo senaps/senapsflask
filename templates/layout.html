@@ -10,8 +10,15 @@
       <li><a href="{{ url_for('index') }}">صفحه اصلی</a></li>
       <li><a href="{{ url_for('contact') }}">ارتباط با ما</a></li>
       <li><a href="{{ url_for('about') }}">درباره ما</a></li>
+      {% if session.log_in %}
+      <li><a href="{{ url_for('log_out') }}">خروج</a></li>
+      {% else %}
+      <li><a href="{{ url_for('log_in') }}">ورود</a></li>
+      {% endif %}
     </ul>
-    <h1>this is from the layout.html!!!</h1>
+    {% if session.log_in %}
+    <h3>Hi {{ session.name }}.</h3>
+    {% endif %}
     {% block content %} {% endblock %}
     <h3>this is the end from the layout.html!!!</h3>
   </body>
