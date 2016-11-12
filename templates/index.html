@@ -5,5 +5,12 @@
 {% endblock %}
 
 {% block content %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
 <h1>this is from the index page!</h1>
 {% endblock %}
