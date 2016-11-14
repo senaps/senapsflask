@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, session, redirect
+from flask import Flask, render_template, url_for, request, session, redirect, flash
 
 app = Flask(__name__)
 app.config['SECRET_KEY']= 'youd never guessed it! :)'
@@ -30,11 +30,12 @@ def log_in():
     title = 'login page!'
     return render_template('login.html', title= title)
 
-@app.route('/loginsuccess', methods=('GET','POST'))
+@app.route('/loginsuccess', methods=['POST'])
 def login_success():
     if request.method == 'POST':
         session['name'] = request.form['name']
         session['log_in'] = True
+        flash('Login Successfull ')
         return redirect(url_for('index'))
 
 @app.route('/logout')
