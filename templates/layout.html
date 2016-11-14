@@ -6,20 +6,28 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
   </head>
   <body>
-    <ul id="menu">
-      <li><a href="{{ url_for('index') }}">صفحه اصلی</a></li>
-      <li><a href="{{ url_for('contact') }}">ارتباط با ما</a></li>
-      <li><a href="{{ url_for('about') }}">درباره ما</a></li>
-      {% if session.log_in %}
-      <li><a href="{{ url_for('log_out') }}">خروج</a></li>
-      {% else %}
-      <li><a href="{{ url_for('log_in') }}">ورود</a></li>
-      {% endif %}
+    <nav class="nav">
+      <ul class="menu">
+	<li><a href="{{ url_for('index') }}">صفحه اصلی</a></li>
+	<li><a href="{{ url_for('contact') }}">ارتباط با ما</a></li>
+	<li><a href="{{ url_for('about') }}">درباره ما</a></li>
+	{% if session.log_in %}
+	<li><a href="{{ url_for('log_out') }}">خروج</a></li>
+	{% else %}
+	<li><a href="{{ url_for('log_in') }}">ورود</a></li>
+	{% endif %}
     </ul>
+    </nav>
     {% if session.log_in %}
-    <h3>Hi {{ session.name }}.</h3>
+    <h3>سلام {{ session.name }}.</h3>
     {% endif %}
-    {% block content %} {% endblock %}
-    <h3>this is the end from the layout.html!!!</h3>
+    <content class="content">
+      {% block content %} {% endblock %}
+    </content>
+    <footer class="footer">
+      <div class="footertext">
+	<p>این فوتر سایت ما هستش و خیلی هم قشنگه تازه</p>
+      </div>
+    </footer>
   </body>
 </html>

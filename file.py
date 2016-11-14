@@ -1,3 +1,5 @@
+# _*_ coding: utf-8 _*_
+
 from flask import Flask, render_template, url_for, request, session, redirect, flash
 
 app = Flask(__name__)
@@ -30,13 +32,12 @@ def log_in():
     title = 'login page!'
     return render_template('login.html', title= title)
 
-@app.route('/loginsuccess', methods=('GET','POST'))
+@app.route('/loginsuccess', methods=['POST'])
 def login_success():
-    if request.method == 'POST':
-        session['name'] = request.form['name']
-        session['log_in'] = True
-        flash('your name is set!')
-        return redirect(url_for('index'))
+    session['name'] = request.form['name']
+    session['log_in'] = True
+    flash('success!')
+    return redirect(url_for('index'))
 
 @app.route('/logout')
 def log_out():
