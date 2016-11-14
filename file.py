@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, url_for, request, session, redirect, flash
 
 app = Flask(__name__)
@@ -32,15 +33,14 @@ def log_in():
 
 @app.route('/loginsuccess', methods=['POST'])
 def login_success():
-    if request.method == 'POST':
-        session['name'] = request.form['name']
-        session['log_in'] = True
-        flash('Login Successfull ')
-        return redirect(url_for('index'))
+    session['name'] = request.form['name']
+    session['log_in'] = True
+    flash('success!')
+    return redirect(url_for('index'))
 
 @app.route('/logout')
 def log_out():
-    session['name']= None
+    session.pop('name')
     session['log_in']= False
     return redirect(url_for('index'))
 
