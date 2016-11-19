@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, url_for, request, session, redirect, flash
 
 app = Flask(__name__)
@@ -44,6 +43,10 @@ def log_out():
     session['log_in']= False
     return redirect(url_for('index'))
 
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('page_not_found.html'), 404
 
 if __name__ == '__main__':
     app.run(debug=True)
